@@ -9,8 +9,7 @@ def move(my_history, their_history, my_score, their_score):
 	return their_history[-1:] if randint(0,5) < 5 and their_history else 'b'
     
     
-def testing(my_history, their_history, count):
-    x = []
+def testing(my_history, their_history, count, x = []):
     for i in range(count):
         x += move(my_history, their_history, 0, 0)
     print 'Amount of iterations: %s \n * Amount Betrayed: %s \n * Amount Colluded: %s' % (count, len([i for i in x if i == 'b']), len([i for i in x if i == 'c']))
