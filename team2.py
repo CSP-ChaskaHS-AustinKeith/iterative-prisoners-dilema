@@ -7,10 +7,24 @@
 ####
 
 team_name = 'Undefeated' # Only 10 chars displayed.
-strategy_name = 'The name the team gives to this strategy'
-strategy_description = 'How does this strategy decide?'
+strategy_name = 'strategy2'
+strategy_description = ''
     
 def move(my_history, their_history, my_score, their_score):
+    if len(my_history) >= 4:
+        return 'b'
+    else:
+        if 'c' in their_history:
+            return 'c'
+        else: 
+            if len(their_history) >= 6:
+                return 'b'
+            else: 
+                if len(my_history) == 0:
+                    return 'b'
+                else: 
+                    return 'c'
+    
     ''' Arguments accepted: my_history, their_history are strings.
     my_score, their_score are ints.
     
