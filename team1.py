@@ -1,8 +1,8 @@
 from random import randint
 
-team_name = 'The name the team gives to itself' # Only 10 chars displayed.
-strategy_name = 'The name the team gives to this strategy'
-strategy_description = 'How does this strategy decide?'
+team_name = 'Team 1' # Only 10 chars displayed.
+strategy_name = 'Pattern Recognition'
+strategy_description = 'sees patterns in opponent\'s play, then adapts to those patterns'
     
 def move(my_history, their_history, my_score, their_score):
     
