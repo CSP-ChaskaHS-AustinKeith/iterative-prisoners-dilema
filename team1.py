@@ -8,9 +8,8 @@ def move(my_history, their_history, my_score, their_score):
     
     if len(their_history) >= 3 and their_history[-3:] == 'ccc':
         return 'b'
-    if len(their_history) >= 4:
-        if their_history[-4:] == 'cbcb' or their_history[-4:] == 'bcbc':
-            return 'b'
+    if len(their_history) >= 4 and (their_history[-4:] == 'cbcb' or their_history[-4:] == 'bcbc'):
+        return 'b'
     return their_history[-1:] if randint(0,5) < 5 and their_history else 'b'
     
     
