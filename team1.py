@@ -10,7 +10,7 @@ def move(my_history, their_history, my_score, their_score):
 def testing(my_history, their_history, count, x = []):
     for i in range(count):
         x += move(my_history, their_history, 0, 0)
-    print 'Amount of iterations: %s \n * Amount Betrayed: %s \n * Amount Colluded: %s' % (len(x), len([i for i in x if i == 'b']), len([i for i in x if i == 'c']))
+    print 'Total Iterations: %s \n * Amount Betrayed: %s \n * Amount Colluded: %s' % (len(x), len([i for i in x if i == 'b']), len([i for i in x if i == 'c']))
     
 def test_move(my_history, their_history, my_score, their_score, result):
     '''calls move(my_history, their_history, my_score, their_score)
