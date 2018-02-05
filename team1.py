@@ -5,14 +5,12 @@ strategy_name = 'Pattern Recognition'
 strategy_description = 'sees patterns in opponent\'s play, then adapts to those patterns'
     
 def move(my_history, their_history, my_score, their_score):
-	if (len(their_history) >= 3 and their_history[-3:] == 'ccc') or (len(their_history) >= 4 and (their_history[-4:] == 'cbcb' or their_history[-4:] == 'bcbc')): return 'b'
-	return their_history[-1:] if randint(0,5) < 5 and their_history else 'b'
-    
+    return 'b' if (len(their_history) >= 3 and their_history[-3:] == 'ccc') or (len(their_history) >= 4 and (their_history[-4:] == 'cbcb' or their_history[-4:] == 'bcbc')) else their_history[-1:] if randint(0,5) < 5 and their_history else 'b'
     
 def testing(my_history, their_history, count, x = []):
     for i in range(count):
         x += move(my_history, their_history, 0, 0)
-    print 'Amount of iterations: %s \n * Amount Betrayed: %s \n * Amount Colluded: %s' % (len(x), len([i for i in x if i == 'b']), len([i for i in x if i == 'c']))
+    print 'Total Iterations: %s \n * Amount Betrayed: %s \n * Amount Colluded: %s' % (len(x), len([i for i in x if i == 'b']), len([i for i in x if i == 'c']))
     
 def test_move(my_history, their_history, my_score, their_score, result):
     '''calls move(my_history, their_history, my_score, their_score)
