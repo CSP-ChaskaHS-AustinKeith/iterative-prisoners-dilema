@@ -1,6 +1,6 @@
 from random import randint
 
-team_name = 'Team 1' # Only 10 chars displayed.
+team_name = 'Team 14' # Only 10 chars displayed.
 strategy_name = 'Pattern Recognition'
 strategy_description = 'sees patterns in opponent\'s play, then adapts to those patterns'
     
@@ -35,8 +35,8 @@ if __name__ == '__main__':
     # Test 1: Betray on first move.
     if test_move(my_history='',
               their_history='', 
-              my_score=0,
-              their_score=0,
+              my_score=100,
+              their_score=250,
               result='b'):
          print 'Test passed'
      # Test 2: Continue betraying if they collude despite being betrayed.
@@ -51,3 +51,7 @@ if __name__ == '__main__':
               my_score=0, 
               their_score=0,
 result='b') 
+
+
+
+
