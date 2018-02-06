@@ -7,8 +7,8 @@
 ####
 
 team_name = "Team 13" # Only 10 chars displayed.
-strategy_name = 'Copycat'
-strategy_description = "First Collude then copy the other team's last move"
+strategy_name = 'Betray'
+strategy_description = "Always betray"
     
 def move(my_history, their_history, my_score, their_score):
     ''' Arguments accepted: my_history, their_history are strings.
