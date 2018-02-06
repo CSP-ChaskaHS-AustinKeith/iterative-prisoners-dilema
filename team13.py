@@ -7,8 +7,8 @@
 ####
 
 team_name = "Team 13" # Only 10 chars displayed.
-strategy_name = 'The name the team gives to this strategy'
-strategy_description = 'How does this strategy decide?'
+strategy_name = 'Copycat'
+strategy_description = "First Collude then copy the other team's last move"
     
 def move(my_history, their_history, my_score, their_score):
     ''' Arguments accepted: my_history, their_history are strings.
@@ -25,9 +25,7 @@ def move(my_history, their_history, my_score, their_score):
     
     # Analyze my_history and their_history and/or my_score and their_score.
     # Decide whether to return 'c' or 'b'.
-    
-    return 'c'
-
+    return "b"
     
 def test_move(my_history, their_history, my_score, their_score, result):
     '''calls move(my_history, their_history, my_score, their_score)
@@ -35,20 +33,12 @@ def test_move(my_history, their_history, my_score, their_score, result):
     Returns True or False, dpending on whether result was as expected.
     '''
     real_result = move(my_history, their_history, my_score, their_score)
-    if real_result == result:
-        return True
-    else:
-        print("move(" +
-            ", ".join(["'"+my_history+"'", "'"+their_history+"'",
-                       str(my_score), str(their_score)])+
-            ") returned " + "'" + real_result + "'" +
-            " and should have returned '" + result + "'")
-        return False
+    return False
 
 if __name__ == '__main__':
      
-    # Test 1: Betray on first move.
-    if test_move(my_history='',
+    # Test 1: Collude on first move.
+     if test_move(my_history='',
               their_history='', 
               my_score=0,
               their_score=0,
@@ -65,4 +55,4 @@ if __name__ == '__main__':
               # move('bbb', 'ccc', 0, 0) returns 'b'.
               my_score=0, 
               their_score=0,
-              result='b')             
+              result='b')                          
