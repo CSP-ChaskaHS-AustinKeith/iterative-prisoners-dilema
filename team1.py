@@ -7,7 +7,7 @@ strategy_description = 'sees patterns in opponent\'s play, then adapts to those 
 def move(my_history, their_history, my_score, their_score):
     return 'b' if (len(their_history) >= 3 and their_history[-3:] == 'ccc') or (len(their_history) >= 4 and (their_history[-4:] == 'cbcb' or their_history[-4:] == 'bcbc')) else their_history[-1:] if randint(0,5) < 5 and their_history else 'b'
     
-def testing(my_history, their_history, count, x = []):
+def testing(my_history, their_history, count):
     x = [move(my_history, their_history, 0, 0) for i in range(count)]
     print 'Total Iterations: %s \n * Amount Betrayed: %s \n * Amount Colluded: %s' % (len(x), len([i for i in x if i == 'b']), len([i for i in x if i == 'c']))
  
