@@ -1,57 +1,46 @@
 from random import randint
 
+
 team_name = 'Team 14' # Only 10 chars displayed.
-strategy_name = 'Pattern Recognition'
-strategy_description = 'sees patterns in opponent\'s play, then adapts to those patterns'
+strategy_name = 'Grudger'
+strategy_description = 'A player starts by cooperating however will defect if at any point the opponent has defected.'
+ 
+class Grudger(Player):
     
-def move(my_history, their_history, my_score, their_score):
-	if (len(their_history) >= 3 and their_history[-3:] == 'ccc') or (len(their_history) >= 4 and (their_history[-4:] == 'cbcb' or their_history[-4:] == 'bcbc')): return 'b'
-	return their_history[-1:] if randint(0,5) < 5 and their_history else 'b'
-    
-    
-def testing(my_history, their_history, count, x = []):
-    for i in range(count):
-        x += move(my_history, their_history, 0, 0)
-    print 'Amount of iterations: %s \n * Amount Betrayed: %s \n * Amount Colluded: %s' % (count, len([i for i in x if i == 'b']), len([i for i in x if i == 'c']))
-    
-def test_move(my_history, their_history, my_score, their_score, result):
-    '''calls move(my_history, their_history, my_score, their_score)
-    from this module. Prints error if return value != result.
-    Returns True or False, dpending on whether result was as expected.
-    '''
-    real_result = move(my_history, their_history, my_score, their_score)
-    if real_result == result:
-        return True
-    else:
-        print("move(" +
-            ", ".join(["'"+my_history+"'", "'"+their_history+"'",
-                       str(my_score), str(their_score)])+
-            ") returned " + "'" + real_result + "'" +
-            " and should have returned '" + result + "'")
-        return False
+        name = 'Grudger'
+        classifier = {
+        'memory_depth': float('int'),
+        'stochastic': False,
+        'inspects_source': False,
+        'manipulates_state': False
+}
+        
+        def strategy(self, opponent):
+            """Begins by playing C, then plays D for the remaining rounds if the opponent ever plays D."""
+            if opponent.defections:
+                 return D
+            return C       
 
-if __name__ == '__main__':
-     
-    # Test 1: Betray on first move.
-    if test_move(my_history='',
-              their_history='', 
-              my_score=100,
-              their_score=250,
-              result='b'):
-         print 'Test passed'
-     # Test 2: Continue betraying if they collude despite being betrayed.
-    test_move(my_history='bbb',
-              their_history='ccc', 
-              # Note the scores are for testing move().
-              # The history and scores don't need to match unless
-              # that is relevant to the test of move(). Here,
-              # the simulation (if working correctly) would have awarded 
-              # 300 to me and -750 to them. This test will pass if and only if
-              # move('bbb', 'ccc', 0, 0) returns 'b'.
-              my_score=0, 
-              their_score=0,
-result='b') 
-
-
+class TestGrudger(TestPlayer):                    
+        name = 'Grudger'
+        classifier = {
+        'memory_depth': float('inf'), 
+        'stochastic': False,
+        'inspects_source': False,
+        'manipulates_source': False,
+        'manipulates_state': False
+}
+        def test_initail_strategy(self):
+            """
+            Starts by cooperating
+            """
+            self.first_play_test(C)
+        
+        def test_strategy(self):
+            """
+            If opponent defects at any point then the player will defect forever.
+            """
+            self.responses_test([C, D, D, D], [C, C, C], [C])
+            self.responses_test([C, C, D, D, D], {C, D, C, C, C], [D])
 
 
